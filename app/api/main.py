@@ -14,7 +14,7 @@ conn = connection()
 @app.route('/host', methods=['POST'])
 def api_create_host():
     data = parse_input_data(request.get_json())
-    print(data)
+    #print(data)
     try:
         error = data["error"]
         return jsonify(data)
@@ -25,7 +25,8 @@ def api_create_host():
             data[1],
             open_ports=data[2],
             exploit_status=data[3],
-            other=data[4])
+            other=data[4],
+            test=request.headers.get('Test-Case'))
         return jsonify(parse_results(results, data))
 
 

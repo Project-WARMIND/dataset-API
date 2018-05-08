@@ -41,7 +41,7 @@ Takes:
         "other": {
           "hostname": "test",
           "ip_address": "127.0.0.1",
-          "others": "other"
+          "random_key": "value"
         },
         "windows_size": [
           [
@@ -57,6 +57,7 @@ Takes:
     }
   ]
 }
+
 ```
 
 Returns:
@@ -66,18 +67,21 @@ Returns:
     "results": {
         "detection": {
             "detectedOS": "Windows 7",
-            "hostname": "test",
-            "ipAddress": "127.0.0.1",
             "openPorts": [
                 1,
                 2,
                 3
-            ]
+            ],
+            "other": {
+                "hostname": "test",
+                "ip_address": "127.0.0.1",
+                "random_key": "value"
+            }
         },
         "exploitSuccess": {
             "CVE-NAME": true
         },
-        "uuid": "h33c2da03df0a4383ae07c0d2939cab64"
+        "uuid": "h68d3c6d15fb846d4b00cf5a011447b88"
     }
 }
 ```

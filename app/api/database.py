@@ -19,7 +19,7 @@ def connection():
 
 
 def start_psql():
-    system("sudo service postgresql start")
+    system("service postgresql start")
 
 
 def psql_command(conn, command, values=None, fetch=True, fetchall=False):
@@ -62,9 +62,9 @@ def get_host_table(conn, uuid):
 
 
 def create_host_table(conn, uuid, open_ports, exploit_status, other):
-    table = psql_command(
+    psql_command(
         conn,
-        "CREATE TABLE %s (id SERIAL PRIMARY KEY, type VARCHAR(255) NOT NULL, value VARCHAR(255) NOT NULL, state BOOLEAN NOT NULL);"
+        "CREATE TABLE %s (id SERIAL PRIMARY KEY, type VARCHAR(255) NOT NULL, value VARCHAR(255), state BOOLEAN NOT NULL);"
         % uuid,
         fetch=False)
     if open_ports:
@@ -75,6 +75,10 @@ def create_host_table(conn, uuid, open_ports, exploit_status, other):
         for item in other.keys():
             add_info(conn, uuid, item, other[item], True)
     return get_host_table(conn, uuid)
+
+
+def delete_host_table(conn, uuid):
+    psql_command(conn, "DROP TABLE %s;" % uuid, fetch=False)
 
 
 def add_info(conn, uuid, type, value, state):
@@ -101,10 +105,13 @@ def create_host(conn,
                 detected_os,
                 open_ports=[],
                 exploit_status={},
-                other=[]):
-    if not hostname:
+                other=[],
+                test=False):
+    if not hostname or hostname == "null":
         hostname = generate_host()
     host = add_to_hosts_table(conn, hostname, detected_os)
     uuid = host[1]
     table = create_host_table(conn, uuid, open_ports, exploit_status, other)
+    if test:
+        delete_host_table(conn, uuid)
     return (host, table)

@@ -34,19 +34,18 @@ def parse_other_info(data):
 
 
 def parse_results(tuple, original):
-    #print(original)
+    print(original)
     host, table = tuple
     #print(host)
     return {
         "results": {
             "uuid": host[1],
             "detection": {
-                "detectedOS": original[1],
-                "hostname": original[0],
-                "ipAddress": None,
-                "openPorts": original[2]
+                "detected_OS": original[1],
+                "open_ports": original[2],
+                "other": original[4]
             },
-            "exploitSuccess": {
+            "exploit_status": {
                 original[3]["exploit"]: original[3]["successful"]
             }
         }
