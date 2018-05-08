@@ -49,9 +49,12 @@ def add_to_hosts_table(conn, hostname, detected_os):
         values=(uuid, hostname, detected_os))
     return response
 
+
 def get_host_table(conn, uuid):
-    table = psql_command(conn, "SELECT * FROM %s LIMIT 100;" % uuid, fetchall=True)
+    table = psql_command(
+        conn, "SELECT * FROM %s LIMIT 100;" % uuid, fetchall=True)
     return table
+
 
 def create_host_table(conn, uuid, open_ports, exploit_status, other):
     table = psql_command(

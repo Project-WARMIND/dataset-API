@@ -1,3 +1,1 @@
-unparseableJSON = {
-    "error": "Could not parse json"
-}
+unparseableJSON = {"error": "Could not parse json"}
