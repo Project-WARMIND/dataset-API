@@ -1,0 +1,28 @@
+{
+  "results": [{
+      "exploit status": {
+        "exploit": "CVE-NAME",
+        "successful": true
+      }
+    },
+    {
+      "detected system": {
+        "detected OS": "Windows 7",
+        "open_ports": [
+          1,
+          2,
+          3
+        ],
+        "other": {
+          "hostname": "test",
+          "ip address": "127.0.0.1",
+          "others": "other"
+        },
+        "windows_size": [
+          [123, 123],
+          [123, 123]
+        ]
+      }
+    }
+  ]
+}
