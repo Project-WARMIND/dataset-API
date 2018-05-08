@@ -1,1 +1,2 @@
-unparseableJSON = {"error": "Could not parse json"}
+def unparseable(error):
+    return {"error": error}

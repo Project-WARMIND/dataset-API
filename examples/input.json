@@ -16,7 +16,7 @@
         "other": {
           "hostname": "test",
           "ip_address": "127.0.0.1",
-          "others": "other"
+          "random_key": "value"
         },
         "windows_size": [
           [

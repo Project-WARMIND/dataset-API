@@ -19,17 +19,14 @@ def api_create_host():
         error = data["error"]
         return jsonify(data)
     except TypeError:
-        if not request.headers.get('Test-Status'):
-            results = create_host(
-                conn,
-                data[0],
-                data[1],
-                open_ports=data[2],
-                exploit_status=data[3])
-            return jsonify(parse_results(results, data))
-        else:
-            print(data)
-            return jsonify(data)
+        results = create_host(
+            conn,
+            data[0],
+            data[1],
+            open_ports=data[2],
+            exploit_status=data[3],
+            other=data[4])
+        return jsonify(parse_results(results, data))
 
 
 def start_flask():

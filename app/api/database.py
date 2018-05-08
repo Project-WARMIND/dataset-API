@@ -1,3 +1,4 @@
+from os import system
 from psycopg2 import connect, ProgrammingError, OperationalError, InternalError
 
 from app.api.settings import config
@@ -13,8 +14,12 @@ def connection():
             password=config["db_config"]["password"])
         return conn
     except OperationalError as e:
-        print(str(e))
-        exit(1)
+        start_psql()
+        return connection()
+
+
+def start_psql():
+    system("sudo service postgresql start")
 
 
 def psql_command(conn, command, values=None, fetch=True, fetchall=False):
@@ -66,6 +71,9 @@ def create_host_table(conn, uuid, open_ports, exploit_status, other):
         add_open_ports(conn, uuid, open_ports)
     if exploit_status:
         add_exploit_status(conn, uuid, exploit_status)
+    if other:
+        for item in other.keys():
+            add_info(conn, uuid, item, other[item], True)
     return get_host_table(conn, uuid)
 
 
