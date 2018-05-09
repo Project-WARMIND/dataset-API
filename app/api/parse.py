@@ -1,6 +1,6 @@
 from json import dumps, loads
 from json.decoder import JSONDecodeError
-from app.api.errors import unparseable
+from app.api.errors import error_message
 
 
 def parse_input_data(request_data):
@@ -10,7 +10,7 @@ def parse_input_data(request_data):
                 parse_open_ports(json_data), parse_exploit_status(json_data),
                 parse_other_info(json_data))
     except (JSONDecodeError, KeyError) as e:
-        return unparseable(e)
+        return error_message(e)
 
 
 def parse_hostname(data):
@@ -34,7 +34,7 @@ def parse_other_info(data):
 
 
 def parse_results(tuple, original):
-    print(original)
+    #print(original)
     host, table = tuple
     #print(host)
     return {
@@ -50,3 +50,7 @@ def parse_results(tuple, original):
             }
         }
     }
+
+
+def parse_auth_header(header):
+    return header.get("Authorization").replace("Bearer", "").strip()

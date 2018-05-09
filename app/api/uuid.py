@@ -7,3 +7,7 @@ def generate_uuid():
 
 def generate_host():
     return str("host_" + uuid1().hex)
+
+
+def generate_token():
+    return str("token_" + uuid1().hex)

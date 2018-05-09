@@ -115,3 +115,14 @@ def create_host(conn,
     if test:
         delete_host_table(conn, uuid)
     return (host, table)
+
+
+def get_host_from_hosts(conn, uuid):
+    return psql_command(
+        conn, "SELECT * FROM hosts WHERE uuid = %s;", values=(uuid, ))
+
+
+def get_host_info(conn, uuid):
+    host = get_host_from_hosts(conn, uuid)
+    table = get_host_table(conn, uuid)
+    return (host, table)
