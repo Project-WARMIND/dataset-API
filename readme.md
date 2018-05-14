@@ -1,6 +1,6 @@
 # dataset-API
 
-Tested using Python 3.6. Documentation on [Postman](https://documenter.getpostman.com/collection/view/4309917-ea5d1725-80c9-4a43-a79f-271d6f14a83a)
+Tested using Python 3.6. Documentation on [Postman](https://documenter.getpostman.com/view/4309917/dataset-api/RW1hhFUc)
 
 ## Install
 
